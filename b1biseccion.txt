@@ -1,0 +1,40 @@
+clc 
+clear all
+
+fprintf('MÉTODO DE LA BISECCIÓN\n')
+
+funcion = input('Ingrese la función f(x): ', 's');
+f = str2func(['@(x) ', funcion]);
+a = input('Ingrese el valor de a: ');
+b = input('Ingrese el valor de b: ');
+er = input('Ingrese el error permisible: \n');
+cen = 0;
+
+while (cen == 0)
+    c = (a + b) / 2;
+    if(f(a) * f(c) <= 0)
+        if (f(a) * f(c) == 0)
+            if (f(a) == 0)
+                s = a;
+            else
+                s = c;
+            end
+            cen = 1;
+        else
+            b = c;
+            if(abs(a - b) < er)
+                if(abs(f(a) - f(b)) > 1)
+                    fprintf('Se encontró un punto singular');
+                else
+                    s = (a + b) / 2;
+                end
+                cen = 1;
+            end
+        end
+    else
+        a = c;
+    end
+end
+
+disp('LA RAÍZ O RAÍCES DE F ES/SON:');
+disp(s);
