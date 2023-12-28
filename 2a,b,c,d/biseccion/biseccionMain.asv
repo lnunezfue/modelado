@@ -1,0 +1,18 @@
+clc
+clear
+%La ecuación número 1 no funciona porque el método de
+%buscar intervalo no reconoce su domini
+f1 = @(x) sqrt((x+5)/2);
+
+f2=@(x) cos(x)-3*x;
+
+f3=@(x) x^3+2*x^2+10*x-20;
+
+a=buscar_intervalo(f3,-50,-7,100);
+
+
+disp(a);
+
+y=biseccion(f3,a(1),a(2),0.0001);
+disp('La raiz se encuentra en: ');
+disp(y);
